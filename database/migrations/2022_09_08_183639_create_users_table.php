@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('dni');
             $table->string('name');
             $table->string('phone_number');
-            $table->string('email')->nullable();
+            $table->string('email');
             $table->string('password');
             $table->foreignId('companies_id')->constrained();
             $table->foreignId('roles_id')->constrained();

@@ -13,15 +13,24 @@ class AuthController extends Controller {
     public function register(Request $request) {
         
         $request->validate([
+            'dni' => 'required|numeric',
             'name' => 'required|string',
+            'phone_number' => 'required|numeric',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed',
+            'companies_id' => 'required',
+            'roles_id' => 'required',
         ]);
 
         $user = User::create([
+            'dni' => $request->dni,
             'name' => $request->name,
+            'phone_number' => $request->phone_number,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'companies_id' => $request->companies_id,
+            'roles_id' => $request->roles_id,
+
         ]);
 
         // $new_user = User::create($request->all());
