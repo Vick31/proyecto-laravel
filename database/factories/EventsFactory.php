@@ -14,7 +14,12 @@ class EventsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->name(),
+            'date'=>$this->faker->dateTimeBetween(),
+            'description'=> $this->faker-> text(10),
+            'client_id'=>$this->faker->text(10),
+            'report_id'=>$this->faker->text(10),
+            'users_id'=>$this->faker->numberBetween($min = 1 , $max = 20),
         ];
     }
 }
