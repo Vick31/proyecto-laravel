@@ -51,11 +51,9 @@ Route::middleware('auth:sanctum')->post('/logout', [WebAuthController::class, 'l
 
 
 
-Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword'])
-    ->name('forgot');
+Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword'])->name('forgot');
 
-Route::post('reset-password', [NewPasswordController::class, 'reset'])
-    ->name('reset');
+Route::post('reset-password', [NewPasswordController::class, 'reset'])->name('reset');
 
 
     // Route::middleware('auth: ', [NewPasswordController::class, 'reset'])
