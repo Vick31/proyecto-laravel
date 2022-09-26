@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clients;
 use App\Models\user;
+use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -35,7 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**

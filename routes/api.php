@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +22,7 @@ use App\Http\Controllers\api\NewPasswordController;
 //     return $request->user();
 // });
 
-Route::post('/register', [AuthController::class, 'register']);
+Route::post('/register-admins', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/logout', [AuthController::class, 'logout']);
 
@@ -35,4 +35,4 @@ Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword'])
 
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
-Route::resource('/articles', ArticleController::class);
+Route::resource('/clientes', Clientcontroller::class);

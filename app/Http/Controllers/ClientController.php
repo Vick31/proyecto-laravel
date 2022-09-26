@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\client;
+use App\Models\clients;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -14,7 +15,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+        $clients_list = clients::all();
+        return $clients_list;
     }
 
     /**
@@ -35,7 +37,17 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'dni' => 'required|numeric|digits_between:1,9|unique:clients',
+            'name' => 'required|max:50',
+            'phone_number' => 'required|numeric|digits_between:1,9',
+            'address' => 'required|string',
+            'email' => 'required',
+            'equipment_id' => 'required|numeric',
+        ]);
+
+        $new_user = clients::create($request->all());
+        $new_user->save();
     }
 
     /**
@@ -44,7 +56,7 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(client $client)
+    public function show(clients $client)
     {
         //
     }
@@ -55,7 +67,7 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(client $client)
+    public function edit(clients $client)
     {
         //
     }
@@ -67,7 +79,7 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, client $client)
+    public function update(Request $request, clients $client)
     {
         //
     }
@@ -78,7 +90,7 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(client $client)
+    public function destroy(clients $client)
     {
         //
     }
