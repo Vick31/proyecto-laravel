@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\api\NewPasswordController;
-
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +36,4 @@ Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword'])
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 Route::resource('/clientes', Clientcontroller::class);
+Route::resource('/roles', RolesController::class);
