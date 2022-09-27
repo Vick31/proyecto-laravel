@@ -35,7 +35,16 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'date' => 'required',
+            'description' => 'required',
+            'users_id' => 'required',
+            'clients_id' => 'required',
+            'reports_id' => 'required',
+        ]);
+
+        $new_event = events::create($request->all());
+        $new_event->save();
     }
 
     /**

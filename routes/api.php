@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\api\NewPasswordController;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\EventsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,4 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 Route::resource('/clientes', Clientcontroller::class);
 Route::resource('/roles', RolesController::class);
+Route::resource('/agendar-cita', EventsController::class);
