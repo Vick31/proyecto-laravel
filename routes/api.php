@@ -39,3 +39,4 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 Route::resource('/clientes', Clientcontroller::class);
 Route::resource('/roles', RolesController::class);
 Route::resource('/citas', EventsController::class);
+
