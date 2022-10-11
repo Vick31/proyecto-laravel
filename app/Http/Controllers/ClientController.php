@@ -39,7 +39,7 @@ class ClientController extends Controller
     {
         $validated = $request->validate([
             'dni' => 'required|numeric|digits_between:1,9|unique:clients',
-            'name' => 'required|max:50',
+            'name' => 'required|max:255',
             'phone_number' => 'required|numeric|digits_between:1,9',
             'address' => 'required|string',
             'email' => 'required',
