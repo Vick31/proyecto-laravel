@@ -7,6 +7,7 @@ use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\api\NewPasswordController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\ReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,7 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 Route::resource('/clientes', Clientcontroller::class);
 Route::resource('/roles', RolesController::class);
 Route::resource('/citas', EventsController::class);
+Route::resource('/reports', ReportsController::class);
+
+
 

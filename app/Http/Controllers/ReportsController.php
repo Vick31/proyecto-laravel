@@ -14,7 +14,8 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        //
+        $reports_list = reports::all();
+        return $reports_list;
     }
 
     /**
@@ -35,7 +36,12 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'description' => 'required|string',
+        ]);
+
+        $reports_list = reports::create($request->all());
+        $reports_list->save();
     }
 
     /**

@@ -33,8 +33,8 @@ class AuthController extends Controller {
 
         ]);
 
-        // $new_user = User::create($request->all());
-        // $new_user->save();
+        $new_user = User::create($request->all());
+        $new_user->save();
 
         return response([
             'user' => $user,
