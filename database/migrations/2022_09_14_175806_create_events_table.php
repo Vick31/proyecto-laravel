@@ -17,7 +17,10 @@ class CreateEventsTable extends Migration
             
             $table->id();
             $table->string('name');
-            $table->date('date');
+            $table->date('date_start');
+            $table->date('date_end');
+            $table->time('time');
+            $table->string('color');
             $table->string('description');
             $table->foreignId('users_id')->constrained();
             $table->foreignId('clients_id')->constrained();
