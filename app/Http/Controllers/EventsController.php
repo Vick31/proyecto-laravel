@@ -37,7 +37,6 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'date' => 'required',
             'name' => 'required',
             'date_start' => 'required',
             'date_end' => 'required',
