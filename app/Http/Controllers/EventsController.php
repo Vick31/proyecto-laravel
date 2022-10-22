@@ -38,7 +38,12 @@ class EventsController extends Controller
     {
         $validated = $request->validate([
             'date' => 'required',
+            'name' => 'required',
+            'date_start' => 'required',
+            'date_end' => 'required',
+            'time' => 'required',
             'description' => 'required',
+            'color' => 'required',
             'users_id' => 'required',
             'clients_id' => 'required',
             'reports_id' => 'required',
