@@ -32,12 +32,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/register-admins', [AuthController::class, 'register']);
-});
 
+});
 Route::resource('/roles', RolesController::class);
 Route::resource('/clientes', Clientcontroller::class);
 Route::resource('/reports', ReportsController::class);
 Route::resource('/citas', EventsController::class);  
+
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
