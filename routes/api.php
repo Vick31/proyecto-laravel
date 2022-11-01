@@ -38,6 +38,7 @@ Route::resource('/roles', RolesController::class);
 Route::resource('/clientes', Clientcontroller::class);
 Route::resource('/reports', ReportsController::class);
 Route::resource('/citas', EventsController::class);  
+Route::resource('/roles', RolesController::class);  
 
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 
