@@ -16,6 +16,7 @@ class CreateEquipmentTable extends Migration
         Schema::create('equipment', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->longText('img');
             $table->bigInteger('serial');
             $table->timestamps();
         });
