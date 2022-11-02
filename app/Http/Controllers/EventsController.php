@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\events;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EventsController extends Controller
 {
@@ -14,8 +15,21 @@ class EventsController extends Controller
      */
     public function index()
     {
-        $events_list = events::all();
-        return $events_list;
+        // $events_list = events::all();
+        // return $events_list;
+
+        $events_list = DB::select(
+            '
+            SELECT events.title, events.start, events.end, events.color, events.time, clients.name AS client, users.name AS user
+            FROM events, clients, users
+            WHERE events.clients_id = clients.id
+            AND events.users_id = users.id
+            '
+        );
+
+        return response([
+            'events_list' => $events_list
+        ]);
     }
 
     /**
