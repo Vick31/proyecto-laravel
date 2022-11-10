@@ -71,7 +71,7 @@ class AuthController extends Controller {
 
     //* GET USER DATA
     public function user() {
-
+        
         return response([
             'user' => auth()->user()
         ], 200);
