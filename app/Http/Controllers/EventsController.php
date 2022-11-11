@@ -59,7 +59,6 @@ class EventsController extends Controller
             'color' => 'required',
             'users_id' => 'required',
             'clients_id' => 'required',
-            'reports_id' => 'required',
         ]);
 
         $new_event = events::create($request->all());
