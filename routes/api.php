@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Sanctum;
 use App\Http\Controllers\api\NewPasswordController;
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ReportsController;
@@ -39,7 +40,7 @@ Route::resource('/clientes', Clientcontroller::class);
 Route::resource('/reports', ReportsController::class);
 Route::resource('/citas', EventsController::class);  
 Route::resource('/roles', RolesController::class);  
-
+Route::resource('/equipos', EquipmentController::class);
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 
 Route::post('reset-password', [NewPasswordController::class, 'reset']);

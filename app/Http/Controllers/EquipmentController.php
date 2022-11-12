@@ -14,7 +14,8 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        //
+        $equipment = equipment::all();
+        return $equipment;
     }
 
     /**
