@@ -23,7 +23,6 @@ class CreateEventsTable extends Migration
             $table->string('color');
             $table->string('description');
             $table->foreignId('users_id')->constrained();
-            // $table->foreignId('reports_id')->constrained();
             $table->foreignId('clients_id')->constrained();
             $table->timestamps();
         });

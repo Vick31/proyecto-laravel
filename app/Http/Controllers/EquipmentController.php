@@ -36,7 +36,14 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'img' => 'required',
+            'serial' => 'required',
+        ]);
+
+        $new_equipment = equipment::create($request->all());
+        $new_equipment->save();
     }
 
     /**
