@@ -40,6 +40,7 @@ class EquipmentController extends Controller
             'name' => 'required',
             'img' => 'required',
             'serial' => 'required',
+            'clients_id' => 'required'
         ]);
 
         $new_equipment = equipment::create($request->all());

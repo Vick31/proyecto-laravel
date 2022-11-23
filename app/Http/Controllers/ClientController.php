@@ -43,7 +43,6 @@ class ClientController extends Controller
             'phone_number' => 'required|numeric|digits_between:1,9',
             'address' => 'required|string',
             'email' => 'required',
-            'equipment_id' => 'required|numeric',
         ]);
 
         $new_user = clients::create($request->all());

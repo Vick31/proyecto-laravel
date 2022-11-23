@@ -18,6 +18,7 @@ class CreateEquipmentTable extends Migration
             $table->string('name');
             $table->longText('img');
             $table->bigInteger('serial');
+            $table->foreignId('clients_id')->constrained();
             $table->timestamps();
         });
     }
