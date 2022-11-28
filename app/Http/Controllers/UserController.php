@@ -6,6 +6,7 @@ use App\Models\clients;
 use App\Models\user;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -16,7 +17,17 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = DB::select(
+            '
+            SELECT users.name, users.dni, users.phone_number, users.email, roles.name AS rol 
+            FROM users, roles 
+            WHERE roles.id = users.roles_id
+            '
+        );
+
+        return response([
+            'users_list' => $users
+        ]);
     }
 
     /**

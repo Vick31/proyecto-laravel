@@ -10,6 +10,7 @@ use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ReportsController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 Route::post('/register-admins', [AuthController::class, 'register']);
 Route::resource('/roles', RolesController::class);
+Route::resource('/users', UserController::class);
 Route::resource('/clientes', Clientcontroller::class);
 Route::resource('/reports', ReportsController::class);
 Route::resource('/citas', EventsController::class);  
