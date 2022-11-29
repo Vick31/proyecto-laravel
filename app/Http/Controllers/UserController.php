@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $users = DB::select(
             '
-            SELECT users.name, users.dni, users.phone_number, users.email, roles.name AS rol 
+            SELECT users.id, users.name, users.dni, users.phone_number, users.email, roles.name AS rol 
             FROM users, roles 
             WHERE roles.id = users.roles_id
             '

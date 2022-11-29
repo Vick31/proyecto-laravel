@@ -36,7 +36,13 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required',
+            'is_admin' => 'required',
+        ]);
+
+        $new_rol = roles::create($request->all());
+        $new_rol->save();
     }
 
     /**
