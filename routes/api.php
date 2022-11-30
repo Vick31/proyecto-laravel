@@ -11,6 +11,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\UserController;
+use Facade\FlareClient\Http\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,5 @@ Route::resource('/equipos', EquipmentController::class);
 Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword']);
 
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
+
+Route::delete('clients/restore/{client}', [ClientController::class, 'restore']); 

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\client;
 use App\Models\clients;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Return_;
 
 class ClientController extends Controller
 {
@@ -15,8 +18,29 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients_list = clients::all();
-        return $clients_list;
+        $client_list = DB::select(
+            '
+            SELECT *
+            FROM clients
+            WHERE clients.deleted_at is NULL
+            '
+        );
+
+        $client_list_deleted = DB::select(
+            '
+            SELECT *
+            FROM clients
+            WHERE clients.deleted_at is NOT NULL
+            '
+        );
+
+        return response([
+            'clients' => $client_list,
+            'clients_delete' => $client_list_deleted,
+        ]);
+
+        // $clients_list = clients::all();
+        // return $clients_list;
     }
 
     /**
@@ -78,9 +102,18 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, clients $client)
+    public function update(Request $request,  $id)
     {
-        //
+        $validated = $request->validate([
+            'dni' => 'required|numeric|digits_between:1,9|unique:clients'. $id,
+            'name' => 'required|max:255',
+            'phone_number' => 'required|numeric|digits_between:1,10',
+            'address' => 'required|string',
+            'email' => 'required',
+        ]);
+        
+        $client= clients::find($id);  
+        $client->fill($request->all())->save();  
     }
 
     /**
@@ -89,8 +122,19 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(clients $client)
+    public function destroy($id)
     {
-        //
+      $client = clients::find($id);
+      $client ->delete();
+      
+      return response([]);
+    }
+    public function restore($id)
+    {
+        $client = clients::withoutTrashed()->find($id);
+        $client->restore();
+        return response([
+            'message' => 'cliente restablecido '
+        ]);
     }
 }

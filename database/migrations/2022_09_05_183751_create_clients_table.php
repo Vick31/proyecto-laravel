@@ -21,6 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('address')->nullable();
             $table->string('email');
             $table->timestamps();
+            $table-> softDeletes();
         });
     }
 
