@@ -102,17 +102,18 @@ class ClientController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'dni' => 'required|numeric|digits_between:1,9|unique:clients'. $id,
+            'dni' => 'required|numeric|digits_between:1,9|unique:clients,id,' . $id,
             'name' => 'required|max:255',
             'phone_number' => 'required|numeric|digits_between:1,10',
             'address' => 'required|string',
             'email' => 'required',
+
         ]);
         
-        $client= clients::find($id);  
+        $client = clients::find($id);  
         $client->fill($request->all())->save();  
     }
 
