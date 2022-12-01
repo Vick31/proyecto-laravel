@@ -132,10 +132,10 @@ class ClientController extends Controller
     }
     public function restore($id)
     {
-        $client = clients::withoutTrashed()->find($id);
+        $client = clients::withTrashed()->find($id);
         $client->restore();
         return response([
-            'message' => 'cliente restablecido '
+            'message' => 'cliente restablecido'
         ]);
     }
 }

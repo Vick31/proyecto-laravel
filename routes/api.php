@@ -48,4 +48,4 @@ Route::post('forgot-password', [NewPasswordController::class, 'forgotPassword'])
 
 Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
-Route::delete('clients/restore/{client}', [ClientController::class, 'restore']); 
+Route::delete('/clientes/restore/{client}', [ClientController::class, 'restore']); 
