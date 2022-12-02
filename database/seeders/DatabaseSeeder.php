@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         roles::insert(
             [
-                'name' => 'admin',
+                'name' => 'super_admin',
                 'is_admin' => 1
             ]
         );
@@ -41,11 +41,11 @@ class DatabaseSeeder extends Seeder
             [
                 'roles_id' =>  1,
                 'companies_id' =>  1, //admin role id
-                'name' =>  'admin', //default name
+                'name' =>  'super_admin', //default name
                 'dni' => 1,
                 'phone_number' =>  1,
                 'email' => 'admin@admin.com', //default email
-                'password' => Hash::make('admin123'), //default admin password: admin123
+                'password' => Hash::make('sadmin_123'), //default admin password: admin123
                 'created_at' => date("Y/m/d"), //created today
             ]
         );
