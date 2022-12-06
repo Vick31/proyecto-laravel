@@ -116,6 +116,7 @@ class ClientController extends Controller
         $client = clients::find($id);  
         $client->fill($request->all())->save();  
     }
+    
 
     /**
      * Remove the specified resource from storage.

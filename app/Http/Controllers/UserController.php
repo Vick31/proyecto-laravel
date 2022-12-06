@@ -19,9 +19,10 @@ class UserController extends Controller
     {
         $users = DB::select(
             '
-            SELECT users.id, users.name, users.dni, users.phone_number, users.email, roles.name AS rol 
-            FROM users, roles 
+            SELECT users.id, users.name, users.dni, users.phone_number, users.email, roles.name AS rol, companies.name AS companie
+            FROM users, roles, companies
             WHERE roles.id = users.roles_id
+            AND companies.id = users.companies_id
             '
         );
 
