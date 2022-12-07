@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller {
@@ -14,7 +15,8 @@ class AuthController extends Controller {
         
         $request->validate([
             'dni' => 'required|numeric',
-            'name' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'phone_number' => 'required|numeric',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed',
@@ -24,7 +26,8 @@ class AuthController extends Controller {
 
         $user = User::create([
             'dni' => $request->dni,
-            'name' => $request->name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'phone_number' => $request->phone_number,
             'email' => $request->email,
             'password' => Hash::make($request->password),
@@ -71,6 +74,7 @@ class AuthController extends Controller {
 
     //* GET USER DATA
     public function user() {
+        
         
         return response([
             'user' => auth()->user()

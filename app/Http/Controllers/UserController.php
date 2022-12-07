@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $users = DB::select(
             '
-            SELECT users.id, users.name, users.dni, users.phone_number, users.email, roles.name AS rol, companies.name AS companie
+            SELECT users.id, users.first_name AS first_name, users.first_name AS last_name, users.dni, users.phone_number, users.email, roles.name AS rol, companies.name AS companie
             FROM users, roles, companies
             WHERE roles.id = users.roles_id
             AND companies.id = users.companies_id
@@ -81,9 +81,20 @@ class UserController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'img' => 'require',
+            'dni' => 'required|numeric|unique:users,id,' . $id,
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'phone_number' => 'required|numeric|digits_between:1,10',
+            'email' => 'required',
+
+        ]);
+        
+        $user = user::find($id);  
+        $user->fill($request->all())->save();  
     }
 
     /**

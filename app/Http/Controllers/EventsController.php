@@ -20,7 +20,7 @@ class EventsController extends Controller
 
         $events_list = DB::select(
             '
-            SELECT events.title, events.start, events.end, events.color, events.time, clients.name AS client, users.name AS user
+            SELECT events.title, events.start, events.end, events.color, events.time, clients.name AS client, users.first_name AS user
             FROM events, clients, users
             WHERE events.clients_id = clients.id
             AND events.users_id = users.id

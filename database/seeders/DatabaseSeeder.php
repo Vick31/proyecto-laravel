@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
             [
                 'roles_id' =>  1,
                 'companies_id' =>  1, //admin role id
-                'name' =>  'super_admin', //default name
+                'first_name' =>  'super', //default name
+                'last_name' =>  'admin', //default name
                 'dni' => 1,
                 'phone_number' =>  1,
                 'email' => 'admin@admin.com', //default email
