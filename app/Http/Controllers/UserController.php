@@ -84,7 +84,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-<<<<<<< Updated upstream
+
             'img' => 'require',
             'dni' => 'required|numeric|unique:users,id,' . $id,
             'first_name' => 'required|max:255',
@@ -96,7 +96,7 @@ class UserController extends Controller
         
         $user = user::find($id);  
         $user->fill($request->all())->save();  
-=======
+([
             'dni' => 'required|numeric|digits_between:1,10|unique:users,id,' . $id,
             'name' => 'required|max:255',
             'phone_number' => 'required|numeric|digits_between:1,10',
@@ -107,7 +107,7 @@ class UserController extends Controller
 
         $user = user::find($id);
         $user->fill($request->all())->save();
->>>>>>> Stashed changes
+
     }
 
     /**
