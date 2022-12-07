@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\clients;
+use App\Models\roles;
 use App\Models\user;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
@@ -49,7 +50,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
     }
 
     /**
@@ -84,6 +84,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
+<<<<<<< Updated upstream
             'img' => 'require',
             'dni' => 'required|numeric|unique:users,id,' . $id,
             'first_name' => 'required|max:255',
@@ -95,6 +96,18 @@ class UserController extends Controller
         
         $user = user::find($id);  
         $user->fill($request->all())->save();  
+=======
+            'dni' => 'required|numeric|digits_between:1,10|unique:users,id,' . $id,
+            'name' => 'required|max:255',
+            'phone_number' => 'required|numeric|digits_between:1,10',
+            'email' => 'required',
+            'roles' => 'required',
+
+        ]);
+
+        $user = user::find($id);
+        $user->fill($request->all())->save();
+>>>>>>> Stashed changes
     }
 
     /**
@@ -103,8 +116,11 @@ class UserController extends Controller
      * @param  \App\Models\user  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(user $user)
+    public function destroy($id)
     {
-        //
+        $user = user::find($id);
+        $user->delete();
+
+        return response([]);
     }
 }
