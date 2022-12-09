@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\clients;
 use App\Models\roles;
 use App\Models\user;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -83,9 +84,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validated = $request->validate([
 
-            'img' => 'require',
+        $user = user::find($id);
+
+        $request->validate([
+
+            'img' => 'required|image',
             'dni' => 'required|numeric|unique:users,id,' . $id,
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
@@ -93,21 +97,20 @@ class UserController extends Controller
             'email' => 'required',
 
         ]);
-        
-        $user = user::find($id);  
-        $user->fill($request->all())->save();  
-([
-            'dni' => 'required|numeric|digits_between:1,10|unique:users,id,' . $id,
-            'name' => 'required|max:255',
-            'phone_number' => 'required|numeric|digits_between:1,10',
-            'email' => 'required',
-            'roles' => 'required',
 
-        ]);
+        // if ($request->updated) {
 
-        $user = user::find($id);
+        //     $request->validate([
+        //         'image' => 'nullable|image'
+        //     ]);
+
+        //     //Eliminar la imagen anterior
+        //     if (File::exists(public_path($user->image)))
+        //         File::delete(public_path($user->image));
+
+        //     $user->image = $this->validate_image($request);
+        // }
         $user->fill($request->all())->save();
-
     }
 
     /**
