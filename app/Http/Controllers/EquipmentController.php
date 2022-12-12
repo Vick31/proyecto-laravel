@@ -36,15 +36,29 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'img' => 'required',
-            'serial' => 'required',
-            'clients_id' => 'required'
+        $request->validate([
+            'name' => 'required|string',
+            'serial' => 'required|unique:equipment',
+            'clients_id' => 'required',
+            'img' => 'nullable|image'
         ]);
 
-        $new_equipment = equipment::create($request->all());
-        $new_equipment->save();
+        //Save image in server and get its url
+        $url_image = $this->validate_image($request);
+
+        $equipment = equipment::create([
+            'name' => $request->name,
+            'serial' => $request->serial,
+            'clients_id' => $request->clients_id,
+            'img' => $url_image,
+        ]);
+
+        return response(
+            [
+                'message' => 'Cliente creado exitósamente.',
+                'new_equipment' => $equipment //Nuevo usuario creado
+            ]
+        );
     }
 
     /**
@@ -90,5 +104,17 @@ class EquipmentController extends Controller
     public function destroy(equipment $equipment)
     {
         //
+    }
+    public function validate_image($request) {
+
+        if ($request->hasfile('img')) {
+            $name = uniqid() . time() . '.' . $request->file('img')->getClientOriginalExtension(); //46464611435281365.jpg
+            $request->file('img')->storeAs('public', $name);
+            return '/storage' . '/' . $name; //uploads/46464611435281365.jpg
+
+        } else {
+
+            return null;
+        }
     }
 }

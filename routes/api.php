@@ -52,3 +52,6 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 Route::delete('/clientes/restore/{client}', [ClientController::class, 'restore']); 
 Route::delete('/companies/restore/{companie}', [CompaniesController::class, 'restore']); 
+
+//!RUTAS PARA ACTUALIZAR IMAGENES
+Route::post('/user/update/{user}', [UserController::class, 'update']);
