@@ -24,7 +24,7 @@ class UserController extends Controller
             'SELECT users.id, users.first_name AS first_name, users.last_name AS last_name, users.dni, users.phone_number, users.email, roles.name AS rol, companies.name AS companie
             FROM users, roles, companies
             WHERE roles.id = users.roles_id
-            AND user.roles_id = 3
+            AND users.roles_id = 3
             AND companies.id = users.companies_id'
         );
 
@@ -32,7 +32,6 @@ class UserController extends Controller
             'SELECT users.id, users.first_name AS first_name, users.last_name AS last_name, users.dni, users.phone_number, users.email, roles.name AS rol, companies.name AS companie
             FROM users, roles, companies
             WHERE users.roles_id = roles.id
-            AND users.roles_id = 2
             AND companies.id = users.companies_id'
         );
 
@@ -103,6 +102,7 @@ class UserController extends Controller
             'last_name' => 'required|max:255',
             'phone_number' => 'required|numeric|digits_between:1,10',
             'email' => 'required',
+            'roles_id' => 'required'
 
         ]);
 
@@ -122,6 +122,7 @@ class UserController extends Controller
         $user->last_name = $request->last_name;
         $user->dni = $request->dni;
         $user->email = $request->email;
+        $user->roles_id = $request->roles_id;
         $user->phone_number = $request->phone_number;        
         $user->save();
     }
