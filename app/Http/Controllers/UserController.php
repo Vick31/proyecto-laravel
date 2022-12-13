@@ -27,8 +27,17 @@ class UserController extends Controller
             AND companies.id = users.companies_id'
         );
 
+        $admins = DB::select(
+            'SELECT users.id, users.first_name AS first_name, users.last_name AS last_name, users.dni, users.phone_number, users.email, roles.name AS rol, companies.name AS companie
+            FROM users, roles, companies
+            WHERE users.roles_id = roles.id
+            AND users.roles_id = 2
+            AND companies.id = users.companies_id'
+        );
+
         return response([
-            'users_list' => $users
+            'users_list' => $users,
+            'admins_list' => $admins,
         ]);
     }
 
