@@ -24,6 +24,7 @@ class UserController extends Controller
             'SELECT users.id, users.first_name AS first_name, users.last_name AS last_name, users.dni, users.phone_number, users.email, roles.name AS rol, companies.name AS companie
             FROM users, roles, companies
             WHERE roles.id = users.roles_id
+            AND user.roles_id = 3
             AND companies.id = users.companies_id'
         );
 
