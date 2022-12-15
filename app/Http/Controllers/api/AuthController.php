@@ -71,10 +71,26 @@ class AuthController extends Controller {
 
     //* GET USER DATA
     public function user() {
-        
-        
         return response([
             'user' => auth()->user()
         ], 200);
     }
+
+    public function update_password(Request $request){
+    
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6'    
+        ]);
+
+        $credentials = $request->only('email', 'password');
+        
+
+        if (!Auth::attempt($credentials)) {
+            return response([
+                'message' => 'Credenciales incorrectas.'
+            ], 403);
+        }
+    }
+
 }
